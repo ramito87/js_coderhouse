@@ -1,48 +1,111 @@
 "use strict";
-class Consola {
-  constructor(fabricante, consola, precio, cantidad) {
-    this.fabricante = fabricante;
-    this.consola = consola;
-    this.precio = parseFloat(precio);
-    this.cantidad = parseFloat(cantidad);
+
+window.addEventListener("load", function () {
+  console.log("DOM cargado");
+
+  function carga_fabricantes() {
+    const fabricantes = [
+      {
+        text: "Microsoft",
+        value: "microsoft",
+      },
+      {
+        text: "Nintendo",
+        value: "nintendo",
+      },
+      {
+        text: "Sony",
+        value: "sony",
+      },
+    ];
+
+    const selectBox = document.querySelector("#fabricante");
+
+    for (const f of fabricantes) {
+      const { text, value, selected } = f;
+      selectBox.options.add(new Option(text, value, selected, selected));
+    }
+
+    selectBox.addEventListener("click", () => {
+      console.log("cambio seleccion");
+      let fabricante = selectBox.value;
+      console.log(fabricante);
+
+      switch (fabricante) {
+        case "nintendo":
+          var consolas = [
+            {
+              text: "Switch",
+              value: "switch",
+            },
+            {
+              text: "Wii U",
+              value: "wiiu",
+            },
+            {
+              text: "Wii",
+              value: "wii",
+            },
+          ];
+      
+          var selectCons = document.querySelector("#consola");
+      
+          for (const c of consolas) {
+            var { text, value, selected } = c;
+            selectCons.options.add(new Option(text, value, selected, selected));
+          }
+          break;
+        case "microsoft":
+          var consolas = [
+            {
+              text: "X-Box 360",
+              value: "360",
+            },
+            {
+              text: "X-Box One",
+              value: "one",
+            },
+            {
+              text: "X-Box S",
+              value: "s",
+            },
+          ];
+      
+          var selectCons = document.querySelector("#consola");
+      
+          for (const c of consolas) {
+            var { text, value, selected } = c;
+            selectCons.options.add(new Option(text, value, selected, selected));
+          }
+          break;
+        
+        case "sony":
+          var consolas = [
+            {
+              text: "Play Station 5",
+              value: "play5",
+            },
+            {
+              text: "Play Station 4",
+              value: "play4",
+            },
+            {
+              text: "Play Station 3",
+              value: "play3",
+            },
+          ];
+      
+          var selectCons = document.querySelector("#consola");
+      
+          for (const c of consolas) {
+            var { text, value, selected } = c;
+            selectCons.options.add(new Option(text, value, selected, selected));
+          }
+          break;
+      }
+    });
+    return false;
   }
 
-ventaTotal(){
-    return this.precio * this.cantidad;
-}
-
- 
-}
-
-var arrayConsolas = [];
-
-do {
-  var comprobacion = prompt(
-    "¿Que fabricante deseas? Microsoft, Nintento, Sony. Ingresa salir para terminar"
-  );
-  if (comprobacion === "salir") {
-    break;
-  } else {
-    var fabricanteC = comprobacion;
-    var consolaC = prompt("¿Que consola deseas?");
-    var cantidadC = parseFloat(prompt("¿Cuantas consolas llevaras?", 0));
-    var precioC = parseFloat(prompt("¿Cuanto cuesta la consola?", 0));
-    arrayConsolas.push(new Consola(fabricanteC, consolaC, precioC, cantidadC));
-  }
-} while (comprobacion != "salir");
-
-console.log(arrayConsolas);
-
-for (var entrega of arrayConsolas){
-    window.alert("Escogiste "+entrega.cantidad+ "consola(s) "+entrega.consola+ "del fabricante"+ entrega.fabricante+ "por el costo $"+ entrega.ventaTotal()+"pesos en total");
-    console.log(entrega.cantidad);
-    console.log(entrega.consola);
-    console.log(entrega.fabricante);
-    console.log(entrega.ventaTotal());
-
-
-    
-
-
-} 
-
+  carga_fabricantes();
+});
